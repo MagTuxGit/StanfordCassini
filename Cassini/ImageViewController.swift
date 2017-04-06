@@ -23,23 +23,30 @@ class ImageViewController: UIViewController {
             scrollView.delegate = self
             scrollView.contentSize = imageView.frame.size
             scrollView.addSubview(imageView)
-            scrollView.maximumZoomScale = 5.0
-            scrollView.minimumZoomScale = 0.5
+            scrollView.maximumZoomScale = 1.0
+            scrollView.minimumZoomScale = 0.03
         }
     }
     
     private func fetchImage() {
         if let url = imageURL {
-            if let urlContents = try? Data(contentsOf: url) {
-                image = UIImage(data: urlContents)
+            // fetching data blocks UI so do it in global thread
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                // fetch data, additionally check whether url is a current imageURL
+                if let urlContents = try? Data(contentsOf: url), url == self?.imageURL {
+                    // UI stuff put back on the main queue
+                    DispatchQueue.main.async {
+                        self?.image = UIImage(data: urlContents)
+                    }
+                }
             }
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        imageURL = DemoURL.stanford
-    }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        imageURL = DemoURL.stanford
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
