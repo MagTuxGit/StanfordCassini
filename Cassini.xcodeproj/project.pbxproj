@@ -12,6 +12,7 @@
 		87C6D7121E962B760066677C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C6D7111E962B760066677C /* Assets.xcassets */; };
 		87C6D7151E962B760066677C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87C6D7131E962B760066677C /* LaunchScreen.storyboard */; };
 		87C6D71E1E962DB10066677C /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6D71D1E962DB10066677C /* ImageViewController.swift */; };
+		87C6D7201E9631000066677C /* DemoURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6D71F1E9631000066677C /* DemoURL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		87C6D7141E962B760066677C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87C6D7161E962B760066677C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87C6D71D1E962DB10066677C /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		87C6D71F1E9631000066677C /* DemoURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +56,9 @@
 		87C6D7091E962B760066677C /* Cassini */ = {
 			isa = PBXGroup;
 			children = (
-				87C6D70E1E962B760066677C /* Main.storyboard */,
 				87C6D71D1E962DB10066677C /* ImageViewController.swift */,
+				87C6D71F1E9631000066677C /* DemoURL.swift */,
+				87C6D70E1E962B760066677C /* Main.storyboard */,
 				87C6D7161E962B760066677C /* Info.plist */,
 				87C6D71C1E962D200066677C /* Supporting Files */,
 			);
@@ -147,6 +150,7 @@
 			files = (
 				87C6D71E1E962DB10066677C /* ImageViewController.swift in Sources */,
 				87C6D70B1E962B760066677C /* AppDelegate.swift in Sources */,
+				87C6D7201E9631000066677C /* DemoURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
