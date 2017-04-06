@@ -18,6 +18,15 @@ class ImageViewController: UIViewController {
             }
         }
     }
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            scrollView.delegate = self
+            scrollView.contentSize = imageView.frame.size
+            scrollView.addSubview(imageView)
+            scrollView.maximumZoomScale = 5.0
+            scrollView.minimumZoomScale = 0.5
+        }
+    }
     
     private func fetchImage() {
         if let url = imageURL {
@@ -29,7 +38,6 @@ class ImageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(imageView)
         imageURL = DemoURL.stanford
     }
     
@@ -40,7 +48,8 @@ class ImageViewController: UIViewController {
         }
     }
     
-    private var imageView = UIImageView()   //frame: CGRect.zero by default
+    // fileprivate allows the extension to use this
+    fileprivate var imageView = UIImageView()   //frame: CGRect.zero by default
     
     private var image: UIImage? {
         get {
@@ -49,6 +58,14 @@ class ImageViewController: UIViewController {
         set {
             imageView.image = newValue
             imageView.sizeToFit()
+            // can be executed in viewDidLoad when outlet scrollView is not set yet
+            scrollView?.contentSize = imageView.frame.size
         }
+    }
+}
+
+extension ImageViewController: UIScrollViewDelegate {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
     }
 }
