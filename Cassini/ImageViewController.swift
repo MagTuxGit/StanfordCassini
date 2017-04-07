@@ -18,6 +18,7 @@ class ImageViewController: UIViewController {
             }
         }
     }
+
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
             scrollView.delegate = self
@@ -28,8 +29,11 @@ class ImageViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     private func fetchImage() {
         if let url = imageURL {
+            spinner.startAnimating()
             // fetching data blocks UI so do it in global thread
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 // fetch data, additionally check whether url is a current imageURL
@@ -65,8 +69,9 @@ class ImageViewController: UIViewController {
         set {
             imageView.image = newValue
             imageView.sizeToFit()
-            // can be executed in viewDidLoad when outlet scrollView is not set yet
+            // can be executed in viewDidLoad when outlets are not set yet, so put ? after outlets
             scrollView?.contentSize = imageView.frame.size
+            spinner?.stopAnimating()
         }
     }
 }
